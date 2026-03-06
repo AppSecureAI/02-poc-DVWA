@@ -1,0 +1,22 @@
+  name: Triage and Remediation Integ
+
+  permissions:
+    contents: read
+    id-token: write
+
+  on:
+    workflow_dispatch: 
+
+  jobs:
+    triageAndRemediation:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+
+        - name: AppSecAI
+          uses: AppSecureAI/submit-run-action@main
+          with:
+            file: sast/bandit-report.json
